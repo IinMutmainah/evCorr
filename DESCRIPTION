@@ -1,0 +1,102 @@
+Package: evCorr
+Type: Package
+Title: Evidential contextual corrections and partial decisions using Belief Functions framework
+Version: 0.1.0
+Authors@R: 
+  c(person(given = "Siti",
+           family = "Mutmainah",
+           role = c("aut", "cre"),
+           email = "siti.mutmainah@uin-suka.ac.id",
+           comment = c(ORCID = "0000-0001-7747-435X")),
+    person(given = "David",
+           family = "Mercier",
+           role = "ctb",
+           comment = c(ORCID = "0000-0002-7511-7874")),
+    person(given = "Frederic",
+           family = "Pichon",
+           role = "ctb",
+           comment = c(ORCID = "0000-0002-9905-5882")),
+    person(given = "Samir",
+           family = "Hachour",
+           role = "ctb"))
+Maintainer: S. Mutmainah <siti.mutmainahf@uin-suka.ac.id>
+Description: Evidential contextual corrections and partial decisions using Belief Functions framework.
+             This package provides functions to improve an information source such as a classifier, 
+             a sensor, etc using contextual correction introduced by Pichon et al. (2016) <doi:10.1016/j.ijar.2015.12.012>. 
+             Also included are tools provided to make a model using Belief Function framework and to measure the performances 
+             of evidential information source using utility-discounted accuracy U65 and U80 proposed by Zaffalon et al. (2012) <doi:10.1016/j.ijar.2012.06.022>.
+Imports:
+        pracma,
+        dplyr,
+        FNN, 
+        R.utils, 
+        MASS,
+        stringr,
+        caret,
+        statip,
+        stats,
+        graphics,
+        evclass
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
+Collate: 
+    'CorrectEKNN.R'
+    'beltob.R'
+    'beltom.R'
+    'beltopl.R'
+    'beltoq.R'
+    'btobel.R'
+    'btom.R'
+    'btopl.R'
+    'btoq.R'
+    'cftobetpl.R'
+    'checkClass.R'
+    'csum.R'
+    'datagenerator.R'
+    'datagen2.R'
+    'dempstersum.R'
+    'disc.R'
+    'dsum.R'
+    'hardToSoftLabels.R'
+    'mSourceToMCD.R'
+    'mSourceToMCN.R'
+    'mSourceToMCR.R'
+    'mnormalized.R'
+    'mtoM.R'
+    'mtob.R'
+    'mtobel.R'
+    'mtobetp.R'
+    'mtobetpl.R'
+    'mtocf.R'
+    'mtopl.R'
+    'mtoq.R'
+    'mtoq0.R'
+    'mtosetmax.R'
+    'mtosetsd.R'
+    'mtosetwd.R'
+    'plSourceToplCD.R'
+    'plSourceToplCN.R'
+    'plSourceToplCR.R'
+    'pltob.R'
+    'pltobel.R'
+    'pltocf.R'
+    'pltom.R'
+    'pltoq.R'
+    'q0tom.R'
+    'qtob.R'
+    'qtobel.R'
+    'qtom.R'
+    'qtopl.R'
+    'reward_U65.R'
+    'reward_U80.R'
+    'softToHardLabels.R'
+    'tmtotv.R'
+    'tuningCD.R'
+    'tuningCD_rev1.R'
+    'tuningCD_rev2.R'
+    'tuningCD_rev3.R'
+    'tuningCN.R'
+    'tuningCR.R'
+    'tvtotm.R'
