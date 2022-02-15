@@ -1,0 +1,48 @@
+#' Generate soft labels from hard labels
+#'
+#'\code{hardToSoftLabels} returns a soft label from a hard one. The output is a matrix where each line is contour function of an instance.
+#'@references B. Quost, T. Denoeux and S. Li. Parametric Classification with
+#'       Soft Labels using the Evidential EM Algorithm. Linear Discriminant Analysis vs.
+#'       Logistic Regression. Advances in Data Analysis and Classification, Vol. 11, Issue 4, pp 659-690, 2017.
+#'
+#'       O. Kanjanatarakul, S. Kuson and T. Denoeux. An Evidential K-Nearest Neighbor Classifier
+#'       based on Contextual Discounting. In: Destercke S., Denoeux T., Cuzzolin F., Martin A. (eds),
+#'       Belief Functions: Theory and Applications. BELIEF 2018. Lecture Notes in Computer Science,
+#'       vol 11069. Springer, pages 155-162, September 2018.
+#'
+#' @param truth  truth from a dataset, a vector which contains a true class of an object
+#' @param mn     mean which is required to generate probability p[i] from beta distribution
+#' @param var    variance which is required to generate probability p[i] from beta distribution
+#' @param nclass number of class of an object
+#'
+#' @return A matrix where each line is a contour function {pl} of the object.
+#' @export
+#' @importFrom statip stats
+#' @author  S. Mutmainah, D. Mercier, F. Pichon, S. Hachour
+#' @examples ## using Iris dataset
+#' data(iris);
+#' truth <- iris[,5];
+#' nclass <- 3;
+#' hardToSoftLabels(iris[,5],mn=0.5,var=0.04,nclass);
+
+
+hardToSoftLabels <- function(truth,mn=0.5,var=0.04,nclass){
+  #nclass <- length(unique(as.numeric(truth))) #number of classes
+  alpha <- ((1 - mn) / var - 1 / mn) * mn ^ 2
+  beta <- alpha * (1 / mn - 1)
+  nobj <- length(truth) # number of labeled objects
+  p <-stats::rbeta(nobj,alpha,beta) #get probability p[i] according to the beta distribution
+  pl <- matrix(data = 0, ncol = nclass, nrow = nobj) # soft labeling (cf) for each object
+  for (i in 1:nobj) {
+    b <-statip::rbern(1,p[i]) #get binary value with probability p[i] of having 1.
+    if (b == 1) {
+      trueclass<- sample(1:nclass,1) # change the true class
+    }
+    else{
+      trueclass <- as.numeric(truth[i]) # do not change the true class
+    }
+    pl[i,trueclass] <- 1
+    pl[i,-trueclass] <- p[i]
+  }
+  return(pl)
+}
